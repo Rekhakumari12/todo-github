@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 class App extends Component{
   constructor() {
     super();
@@ -12,11 +11,18 @@ class App extends Component{
     }
   }
   componentDidMount() {
-    if (localStorage.getItem !== null) {
-    let all=JSON.parse(localStorage.getItem("items"));
-    let progress = JSON.parse(localStorage.getItem("progress"));
-    this.setState({items: all});
-    this.setState({progress: progress});
+    // console.log(localStorage.getItem)
+    if (localStorage.getItem("items") !== null) {
+      let all = JSON.parse(localStorage.getItem("items"));
+      let progress = JSON.parse(localStorage.getItem("progress"));
+      this.setState({ items: all });
+      this.setState({ progress: progress });
+    } else {
+      let all =[];
+      let progress = 0;
+      this.setState({ items: all });
+      this.setState({ progress: progress });
+    }  
   }
   componentDidUpdate() {
     localStorage.setItem("items", JSON.stringify(this.state.items));
